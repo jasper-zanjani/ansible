@@ -1,7 +1,7 @@
 ##
 # Repos
 ##
-- name: Install RPMFusion repos
+- name: RPMFusion repos
   block:
     - name: Install RPMFusion free repo
       dnf: name=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
@@ -12,7 +12,7 @@
 # Snapd
 ##
 
-- name: Install snapd
+- name: snapd
   dnf: name=snapd state=latest
 # On Red Hat systems, `snapd` requires a link to be manually created
 - name: Create link for snapd to work
@@ -24,9 +24,9 @@
 
 - name: neofetch
   dnf: name=neofetch state=latest
-- name: Install vim
+- name: vim
   dnf: name=vim-enhanced state=latest
-- name: Install bat
+- name: bat
   dnf: name=bat state=latest
 
 ##
@@ -39,16 +39,16 @@
       dnf: name=transmission state=latest
     - name: Install Transmission (CLI)
       dnf: name=transmission-cli state=latest
-- name: Install VS Code
+- name: VS Code
   snap: name=code state=present classic=yes
-- name: Install Powershell Core
+- name: Powershell Core
   snap: name=powershell state=present classic=yes
 
 ##
 # Desktop appearance
 ##
 
-- name: Install Fedora backgrounds
+- name: Fedora backgrounds
   dnf: name=f{{item}}-backgrounds-gnome state=latest
   with_items:
     - 30
@@ -59,6 +59,6 @@
     - 25
     - 24
     - 23
-
-- name: Install Breeze cursor
+- name: Breeze cursor
   dnf: name=breeze-cursor-theme state=latest
+
