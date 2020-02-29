@@ -1,0 +1,66 @@
+##
+# Repos
+##
+- name: Install RPMFusion repos
+  block:
+    - name: Install RPMFusion free repo
+      dnf: name=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
+    - name: Install RPMFusion nonfree repo
+      dnf: name=https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
+
+##
+# Snapd
+##
+
+- name: Install snapd
+  dnf: name=snapd state=latest
+# On Red Hat systems, `snapd` requires a link to be manually created
+- name: Create link for snapd to work
+  file: src=/var/lib/snapd/snap dest=/snap state=link
+
+##
+# CLI applications
+##
+
+- name: neofetch
+  dnf: name=neofetch state=latest
+- name: Install vim
+  dnf: name=vim-enhanced state=latest
+- name: Install bat
+  dnf: name=bat state=latest
+
+##
+# GUI applications
+## 
+
+- name: Transmission bittorrent clients
+  block:
+    - name: Install Transmission (GUI)
+      dnf: name=transmission state=latest
+    - name: Install Transmission (CLI)
+      dnf: name=transmission-cli state=latest
+- name: Install VS Code
+  snap: name=code state=present classic=yes
+- name: Install Powershell Core
+  snap: name=powershell state=present classic=yes
+
+##
+# Desktop appearance
+##
+
+- name: Fedora backgrounds
+  block:
+    - name: Install Fedora 30 backgrounds
+      dnf: name=f30-backgrounds-gnome state=latest
+    - name: Install Fedora 29 backgrounds
+      dnf: name=f29-backgrounds-gnome state=latest
+    - name: Install Fedora 28 backgrounds
+      dnf: name=f28-backgrounds-gnome state=latest
+    - name: Install Fedora 27 backgrounds
+      dnf: name=f27-backgrounds-gnome state=latest
+    - name: Install Fedora 26 backgrounds
+      dnf: name=f26-backgrounds-gnome state=latest
+    - name: Install Fedora 25 backgrounds
+      dnf: name=f25-backgrounds-gnome state=latest
+- name: Install Breeze cursor
+  dnf: name=breeze-cursor-theme state=latest

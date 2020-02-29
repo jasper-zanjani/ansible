@@ -2,27 +2,7 @@
 - hosts: localhost
   become: yes
   tasks:
-    - name: Install vim
-      dnf: name=vim-enhanced state=latest
-    - name: Install bat
-      dnf: name=bat state=latest
-    - name: Install and configure snapd on Fedora
+    - name: Red Hat
+      include: redhat.yaml
       when: ansible_facts['os_family'] == "RedHat"
-      block:
-        - name: Install snapd
-          dnf: name=snapd state=latest
-        ##
-        # On Red Hat systems, `snapd` requires a link to be manually created
-        ##
-        - name: Create link for snapd to work
-          file: src=/var/lib/snapd/snap dest=/snap state=link
-    - name: Install VS Code
-      snap: name=code state=present classic=yes
-    - name: Install Powershell Core
-      snap: name=powershell state=present classic=yes
-    - name: Install RPMFusion repos
-      block:
-        - name: Install RPMFusion free repo
-          dnf: name=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
-        - name: Install RPMFusion nonfree repo
-          dnf: name=https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
+
