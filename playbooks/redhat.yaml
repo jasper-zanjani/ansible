@@ -48,19 +48,17 @@
 # Desktop appearance
 ##
 
-- name: Fedora backgrounds
-  block:
-    - name: Install Fedora 30 backgrounds
-      dnf: name=f30-backgrounds-gnome state=latest
-    - name: Install Fedora 29 backgrounds
-      dnf: name=f29-backgrounds-gnome state=latest
-    - name: Install Fedora 28 backgrounds
-      dnf: name=f28-backgrounds-gnome state=latest
-    - name: Install Fedora 27 backgrounds
-      dnf: name=f27-backgrounds-gnome state=latest
-    - name: Install Fedora 26 backgrounds
-      dnf: name=f26-backgrounds-gnome state=latest
-    - name: Install Fedora 25 backgrounds
-      dnf: name=f25-backgrounds-gnome state=latest
+- name: Install Fedora backgrounds
+  dnf: name=f{{item}}-backgrounds-gnome state=latest
+  with_items:
+    - 30
+    - 29
+    - 28
+    - 27
+    - 26
+    - 25
+    - 24
+    - 23
+
 - name: Install Breeze cursor
   dnf: name=breeze-cursor-theme state=latest
