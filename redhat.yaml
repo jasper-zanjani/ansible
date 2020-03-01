@@ -12,11 +12,13 @@
 # Snapd
 ##
 
-- name: snapd
-  dnf: name=snapd state=latest
-# On Red Hat systems, `snapd` requires a link to be manually created
-- name: Create link for snapd to work
-  file: src=/var/lib/snapd/snap dest=/snap state=link
+- name: Install snapd
+  block:
+    - name: snapd
+      dnf: name=snapd state=latest
+    # On Red Hat systems, `snapd` requires a link to be manually created
+    - name: Create link for snapd to work
+      file: src=/var/lib/snapd/snap dest=/snap state=link
 
 ##
 # CLI applications
