@@ -41,10 +41,6 @@
       dnf: name=transmission state=latest
     - name: Install Transmission (CLI)
       dnf: name=transmission-cli state=latest
-- name: VS Code
-  snap: name=code state=present classic=yes
-- name: Powershell Core
-  snap: name=powershell state=present classic=yes
 
 ##
 # Desktop appearance

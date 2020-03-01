@@ -1,0 +1,6 @@
+- name: Snap Store app
+  snap: name=snap-store state=present
+- name: VS Code
+  snap: name=code state=present classic=yes
+- name: Powershell Core
+  snap: name=powershell state=present classic=yes

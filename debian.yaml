@@ -6,7 +6,3 @@
   apt: name=bat state=latest
 - name: GNOME backgrounds
   apt: name=gnome-backgrounds state=latest
-- name: VS Code
-  snap: name=code state=present classic=yes
-- name: Powershell Core
-  snap: name=powershell state=present classic=yes

@@ -8,4 +8,6 @@
     - name: Ubuntu
       include_tasks: debian.yaml
       when: ansible_facts['os_family'] == "Debian"
+    - name: Snaps
+      include_tasks: snaps.yaml
 
