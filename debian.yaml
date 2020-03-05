@@ -6,3 +6,11 @@
   apt: name=bat state=latest
 - name: GNOME backgrounds
   apt: name=gnome-backgrounds state=latest
+
+# This needs to be tested!
+- name: Add Universe repo
+  apt_repository:
+    repo: universe
+- name: GNOME Tweaks
+  when: ansible_facts['DESKTOP_SESSION'] == "gnome"
+  apt: name=gnome-tweaks state=latest

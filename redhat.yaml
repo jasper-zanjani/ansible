@@ -30,6 +30,8 @@
   dnf: name=vim-enhanced state=latest
 - name: bat
   dnf: name=bat state=latest
+- name: tldr
+  dnf: name=tldr state=latest
 
 ##
 # GUI applications
@@ -60,3 +62,6 @@
 - name: Breeze cursor
   dnf: name=breeze-cursor-theme state=latest
 
+- name: GNOME tools
+  when: ansible_facts['DESKTOP_SESSION'] == "gnome"
+  dnf: name=gnome-tweak-tool state=latest
