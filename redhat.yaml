@@ -1,16 +1,9 @@
-##
-# Repos
-##
 - name: RPMFusion repos
   block:
     - name: Install RPMFusion free repo
       dnf: name=https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-31.noarch.rpm
     - name: Install RPMFusion nonfree repo
       dnf: name=https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
-
-##
-# Snapd
-##
 
 - name: Install snapd
   block:
@@ -19,11 +12,6 @@
     # On Red Hat systems, `snapd` requires a link to be manually created
     - name: Create link for snapd to work
       file: src=/var/lib/snapd/snap dest=/snap state=link
-
-##
-# CLI applications
-##
-
 - name: neofetch
   dnf: name=neofetch state=latest
 - name: vim
@@ -33,10 +21,6 @@
 - name: tldr
   dnf: name=tldr state=latest
 
-##
-# GUI applications
-## 
-
 - name: Transmission bittorrent clients
   block:
     - name: Install Transmission (GUI)
@@ -44,10 +28,9 @@
     - name: Install Transmission (CLI)
       dnf: name=transmission-cli state=latest
 
-##
-# Desktop appearance
-##
-
+- name: GNOME tools
+  when: lookup('env','DESKTOP_SESSION') == "gnome"
+  dnf: name=gnome-tweak-tool state=latest
 - name: Fedora backgrounds
   dnf: name=f{{item}}-backgrounds-gnome state=latest
   with_items:
@@ -61,7 +44,3 @@
     - 23
 - name: Breeze cursor
   dnf: name=breeze-cursor-theme state=latest
-
-- name: GNOME tools
-  when: ansible_facts['DESKTOP_SESSION'] == "gnome"
-  dnf: name=gnome-tweak-tool state=latest
