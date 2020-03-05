@@ -17,7 +17,7 @@ The star of the show is **packages.yaml**, which invokes two different task list
       when: ansible_facts['os_family'] == "Debian"
 ```
 
-**debian.yaml** is pretty straightforward, but **redhat.yaml** has some interesting block statements. For example, on Red Hat systems in order for `snapd` to work you have to manually create a symlink. The syntax of this playbook ensures that Red Hat systems create this symlink in an idempotent manner.
+**debian.yaml** is pretty straightforward, but **redhat.yaml** has some interesting **`BLOCK`** statements and **conditionals**. For example, on Red Hat systems in order for `snapd` to work you have to manually create a symlink. The syntax of this playbook ensures that Red Hat systems create this symlink in an idempotent manner.
 ```yaml
 - name: Install snapd
   block:
@@ -26,4 +26,10 @@ The star of the show is **packages.yaml**, which invokes two different task list
     # On Red Hat systems, `snapd` requires a link to be manually created
     - name: Create link for snapd to work
       file: src=/var/lib/snapd/snap dest=/snap state=link
+```
+Also the following ensures that **GNOME Tweaks** is installed, but only on GNOME desktops (based on the value of the `DESKTOP_SESSION` environment variable):
+```yaml
+- name: GNOME tools
+  when: lookup('env','DESKTOP_SESSION') == "gnome"
+  dnf: name=gnome-tweak-tool state=latest
 ```
