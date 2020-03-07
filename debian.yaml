@@ -1,3 +1,6 @@
+- name: aptitude
+  apt-get: name=aptitude state=latest
+
 - name: vim
   apt: name=vim state=latest
 - name: neofetch
