@@ -16,8 +16,7 @@
 
 # This needs to be tested!
 - name: Add Universe repo
-  apt_repository:
-    repo: universe
+  apt_repository: repo="deb http://archive.ubuntu.com/ubuntu eoan universe" state=present
 - name: GNOME Tweaks
   when: ansible_env['DESKTOP_SESSION'] == "gnome"
   apt: name=gnome-tweaks state=latest
