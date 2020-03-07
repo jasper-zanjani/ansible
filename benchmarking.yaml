@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: GLMark2
+      apt: name=glmark2 state=latest
