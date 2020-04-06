@@ -1,4 +1,10 @@
+- name: Add Flathub
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://glathub.org/repo/flathub.flatpakrepo
 - name: Discord
-  flatpak:
+  flatpak: 
     name: com.discordapp.Discord
     state: present
+    remote: flathub
