@@ -13,6 +13,10 @@
   apt: name=flatpak state=latest
 - name: Flatpaks
   include_tasks: flatpaks.yaml
+- name: Python
+  apt:
+    name: python3-pip python3-venv python3-tk
+    state: latest
 
 # This needs to be tested!
 #- name: Add Universe repo
