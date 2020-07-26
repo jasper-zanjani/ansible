@@ -10,4 +10,6 @@
       when: ansible_facts['os_family'] == "Debian"
     - name: Snaps
       include_tasks: snaps.yaml
+    - name: Vim
+      include_tasks: vim.yaml
 

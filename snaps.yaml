@@ -4,3 +4,5 @@
   snap: name=code state=present classic=yes
 - name: Powershell Core
   snap: name=powershell state=present classic=yes
+- name: lsd - ls replacement
+  snap: name=lsd state=present

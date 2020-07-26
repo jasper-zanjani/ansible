@@ -14,8 +14,8 @@
       file: src=/var/lib/snapd/snap dest=/snap state=link
 - name: neofetch
   dnf: name=neofetch state=latest
-- name: vim
-  dnf: name=vim-enhanced state=latest
+# - name: vim
+#   dnf: name=vim-enhanced state=latest
 - name: bat
   dnf: name=bat state=latest
 - name: tldr

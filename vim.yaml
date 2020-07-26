@@ -1,0 +1,81 @@
+- name: Install Vim
+  block:
+    - name: Install vim on Debian-derived distributions
+      when: ansible_facts['os_family'] == "Debian"
+      apt: name=vim state=latest
+    - name: Install vim on Red Hat-derived distributions
+      when: ansible_facts['os_family'] == "RedHat"
+      dnf: name=vim-enhanced state=latest
+- name: Install vim plugins
+  block:
+    - name: 'Install vim plugin: vim-multiple-cursors'
+      git:
+        repo: https://github.com/terryma/vim-multiple-cursors.git
+        dest: /root/.vim/pack/a/start/vim-multiple-cursors
+        update: no
+    - name: 'Install vim plugin: vim-airline'
+      git:
+        repo: https://github.com/vim-airline/vim-airline.git
+        dest: /root/.vim/pack/a/start/vim-airline
+        update: no
+    - name: 'Install vim plugin: embark'
+      git:
+        repo: https://github.com/skbolton/embark.git
+        dest: /root/.vim/pack/a/start/embark
+        update: no
+    - name: 'Install vim plugin: nerdtree'
+      git:
+        repo: https://github.com/scrooloose/nerdtree
+        dest: /root/.vim/pack/a/start/nerdtree
+        update: no
+    - name: 'Install vim plugin: vim-markdown'
+      git:
+        repo: https://github.com/plasticboy/vim-markdown
+        dest: /root/.vim/pack/a/start/vim-markdown
+        update: no
+    - name: 'Install vim plugin: vim-surround'
+      git:
+        repo: https://github.com/tpope/vim-surround
+        dest: /root/.vim/pack/a/start/vim-surround
+        update: no
+    - name: vimrc
+      block:
+        - name: Setting tabs
+          block:
+            - name: Soft tabs
+              lineinfile: path=/root/.vimrc create=yes line='set expandtab'
+            - name: Tabs of 2 spaces
+              lineinfile: path=/root/.vimrc create=yes line='set tabstop=2'
+            - name: Shift width of 2 spaces
+              lineinfile: path=/root/.vimrc create=yes line='set shiftwidth=2'
+        - name: Setting line numbers
+          block:
+            - name: Line number
+              lineinfile: path=/root/.vimrc create=yes line='set number'
+            - name: Relative line numbers
+              lineinfile: path=/root/.vimrc create=yes line='set relativenumber'
+        - name: Setting colors
+          block:
+            - name: Enable syntax highlighting
+              lineinfile: path=/root/.vimrc create=yes line='syntax on'
+            - name: Enable 24-bit colors
+              lineinfile: path=/root/.vimrc create=yes line='set termguicolors'
+            - name: Setting colorscheme to Embark
+              lineinfile: path=/root/.vimrc create=yes line='colorscheme embark'
+            - name: Setting Airline to match colorscheme Embark
+              lineinfile: path=/root/.vimrc create=yes line='let g:airline_theme = \'embark\''
+        - name: Setting keybindings
+          block:
+            - name: Setting Ctrl-h
+              lineinfile: path=/root/.vimrc create=yes line='nnoremap <C-h> <C-w>h'
+            - name: Setting Ctrl-j
+              lineinfile: path=/root/.vimrc create=yes line='nnoremap <C-j> <C-w>j'
+            - name: Setting Ctrl-k
+              lineinfile: path=/root/.vimrc create=yes line='nnoremap <C-k> <C-w>k'
+            - name: Setting Ctrl-l
+              lineinfile: path=/root/.vimrc create=yes line='nnoremap <C-l> <C-w>l'
+            - name: Setting K
+              lineinfile: path=/root/.vimrc create=yes line='nmap <silent> K o<Esc>k'
+            - name: Setting semicolon to colon in normal mode
+              lineinfile: path=/root/.vimrc create=yes line='nmap ; :'
+          

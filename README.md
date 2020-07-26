@@ -39,3 +39,22 @@ Also the following ensures that [**GNOME Tweaks**](https://github.com/GNOME/gnom
   when: lookup('env','DESKTOP_SESSION') == "gnome"
   dnf: name=gnome-tweak-tool state=latest
 ```
+Management of [dotfiles](https://github.com/jasper-zanjani/dotfiles) is always a topic for lxers, so I've incorporated some of my essential vimrc settings as well.
+These settings take effect on /root/.vimrc, so any user account's vimrc will be able to adopt these settings simply by symlinking to the file or specifying it on invocation with `-u`: `vim -u /root/.vimrc`.
+```yaml
+- name: Setting line numbers
+  block:
+    - name: Line number
+      lineinfile: path=/root/.vimrc create=yes line='set number'
+    - name: Relative line numbers
+      lineinfile: path=/root/.vimrc create=yes line='set relativenumber'
+```
+I'm also playing with the possibility of cloning vim plugins to /root/.vim using the [`git module`](https://docs.ansible.com/ansible/latest/modules/git_module.html), but I'm not sure my implementation is quite idempotent enough yet.
+Without the `update` key, if the plugin is already installed the playbook fails...
+```yaml
+- name: 'Install vim plugin: nerdtree'
+  git:
+    repo: https://github.com/scrooloose/nerdtree
+    dest: /root/.vim/pack/a/start
+    update: no
+```
