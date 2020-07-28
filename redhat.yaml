@@ -44,3 +44,5 @@
     - 23
 - name: Breeze cursor
   dnf: name=breeze-cursor-theme state=latest
+- name: Install Haskell
+  dnf: name=dhc state=latest

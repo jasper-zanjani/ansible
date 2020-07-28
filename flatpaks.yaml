@@ -2,7 +2,7 @@
   flatpak_remote:
     name: flathub
     state: present
-    flatpakrepo_url: https://glathub.org/repo/flathub.flatpakrepo
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 - name: Discord
   flatpak: 
     name: com.discordapp.Discord

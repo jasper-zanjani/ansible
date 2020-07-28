@@ -38,6 +38,11 @@
         repo: https://github.com/tpope/vim-surround
         dest: /root/.vim/pack/a/start/vim-surround
         update: no
+    - name: 'Install vim plugin: vim-ps1'
+      git:  
+        repo: https://github.com/PProvost/vim-ps1
+        dest: /root/.vim/pack/a/start/vim-surround
+        update: no
     - name: vimrc
       block:
         - name: Setting tabs
