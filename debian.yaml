@@ -24,7 +24,3 @@
 - name: GNOME Tweaks
   when: lookup('env','DESKTOP_SESSION') == "gnome"
   apt: name=gnome-tweaks state=latest
-- name: ImageMagick
-  apt:
-    name: imagemagick
-    state: latest
