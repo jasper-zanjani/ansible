@@ -6,3 +6,12 @@
   snap: name=powershell state=present classic=yes
 - name: lsd - ls replacement
   snap: name=lsd state=present
+- name: .NET Core
+  block:
+  - name: .NET Core SDK
+    snap: name=dotnet-sdk state=present classic=yes
+  - name: DOTNET_ROOT variable
+    lineinfile:
+      path: /etc/bash.bashrc
+      line: export DOTNET_ROOT=/snap/dotnet-sdk/current
+      create: yes
