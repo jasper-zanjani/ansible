@@ -6,6 +6,8 @@
   snap: name=powershell state=present classic=yes
 - name: lsd - ls replacement
   snap: name=lsd state=present
+- name: Anki
+  snap: name=anki-woodrow state=present
 - name: .NET Core
   block:
   - name: .NET Core SDK
