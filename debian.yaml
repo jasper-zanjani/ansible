@@ -26,3 +26,5 @@
   apt: name=gnome-tweaks state=latest
 - name: TLDR
   apt: name=tldr state=latest
+- name: tree
+  apt: name=tree state=latest
